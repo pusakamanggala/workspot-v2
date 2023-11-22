@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: #fcfcfc;
+}
+
+/* Customize the scrollbar for webkit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 10px; /* Adjust the scrollbar width as needed */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2dd4bf; /* Change the thumb color */
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent; /* Change the track color */
+}
+
+/* Customize the scrollbar for Firefox */
+/* Please note that Firefox uses a different method for scrollbar customization */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2dd4bf transparent;
+}
+
+/* body background rotate */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("./img/background.jpg");
+  background-size: cover;
+  background-color: #fcfcfc;
+  z-index: -1;
+} /* Example modal styles */
