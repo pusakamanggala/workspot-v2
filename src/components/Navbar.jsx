@@ -43,7 +43,7 @@ const Navbar = () => {
           isScrolled
             ? "bg-teal-400/80 backdrop-blur-md text-white"
             : "bg-transparent text-teal-400"
-        } " container py-5 px-8  rounded-3xl transition-colors duration-500 flex flex-col md:flex-row justify-between items-center"`}
+        } w-full py-5 px-8 xl:mx-24 rounded-3xl transition-colors duration-500 flex flex-col md:flex-row justify-between items-center `}
       >
         <div className="flex justify-between items-center w-full">
           <a href="/" className="text-2xl font-bold">
