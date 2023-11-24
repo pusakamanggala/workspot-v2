@@ -24,3 +24,10 @@ export const convertDate = (timestamp) => {
     return `${months}m ago`;
   }
 };
+
+export const formatSalary = (salary) => {
+  if (typeof salary === "number" && !isNaN(salary)) {
+    return salary.toLocaleString();
+  }
+  return salary;
+};
