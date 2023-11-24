@@ -2,7 +2,7 @@ import { useGetVacancy } from "../hooks/useGetVacancy";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { convertDate } from "../utils/helper";
+import { convertDate, formatSalary } from "../utils/helper";
 import VacancyDetailModal from "./VacancyDetailModal";
 import { useState } from "react";
 import emptyImage from "../img/undraw_empty.svg";
@@ -11,6 +11,7 @@ import ErrorImage from "../img/undraw_fixing_bugs.svg";
 const Vacancy = () => {
   const [vacancyDetailIsOpen, setVacancyDetailIsOpen] = useState(false);
   const [selectedVacancy, setSelectedVacancy] = useState(null);
+  console.log(selectedVacancy);
 
   const {
     data: vacancyData,
@@ -20,8 +21,8 @@ const Vacancy = () => {
     error: vacancyErrorData,
   } = useGetVacancy();
 
-  const handleDetailVacancy = (vacancyData) => {
-    setSelectedVacancy(vacancyData);
+  const handleDetailVacancy = (vacancyID) => {
+    setSelectedVacancy(vacancyID);
     setVacancyDetailIsOpen(!vacancyDetailIsOpen);
   };
 
@@ -112,7 +113,7 @@ const Vacancy = () => {
               <div key={vacancy.id}>
                 <div
                   className="m-6 bg-white shadow-md relative font-semibold p-5 rounded-md h-60 flex flex-col justify-between hover:bg-teal-50 cursor-pointer"
-                  onClick={() => handleDetailVacancy(vacancy)}
+                  onClick={() => handleDetailVacancy(vacancy.id)}
                 >
                   {/* company logo */}
                   <div className="bg-gray-300/30 border-2  border-teal-400 h-12 w-12 rounded-xl absolute -top-6 overflow-hidden bg-white">
@@ -132,8 +133,8 @@ const Vacancy = () => {
                     <p className="text-gray-400">{vacancy.company_name}</p>
                   </div>
                   <p>
-                    Rp. {vacancy.salary_min.toLocaleString()} -{" "}
-                    {vacancy.salary_max.toLocaleString()}
+                    Rp. {formatSalary(vacancy.salary_min)} -{" "}
+                    {formatSalary(vacancy.salary_max)}
                   </p>
                   <p className="capitalize text-teal-500">
                     {vacancy.company_city}
@@ -168,7 +169,7 @@ const Vacancy = () => {
       {/* modal */}
       {vacancyDetailIsOpen && (
         <VacancyDetailModal
-          vacancyData={selectedVacancy}
+          vacancyID={selectedVacancy}
           toggleModal={handleToggleVacancyDetailModal}
         />
       )}

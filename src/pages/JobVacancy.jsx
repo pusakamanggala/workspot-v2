@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useGetVacancy } from "../hooks/useGetVacancy";
-import { convertDate } from "../utils/helper";
+import { convertDate, formatSalary } from "../utils/helper";
 import EmptyImage from "../img/undraw_empty.svg";
 import VacancyDetailModal from "../components/VacancyDetailModal";
 import ErrorImage from "../img/undraw_fixing_bugs.svg";
@@ -13,8 +13,8 @@ const JobVacancy = () => {
   const [filteredVacancy, setFilteredVacancy] = useState([]);
   const [vacancyDetailIsOpen, setVacancyDetailIsOpen] = useState(false);
   const [selectedVacancy, setSelectedVacancy] = useState(null);
-  const handleDetailVacancy = (vacancyData) => {
-    setSelectedVacancy(vacancyData);
+  const handleDetailVacancy = (vacancyID) => {
+    setSelectedVacancy(vacancyID);
     setVacancyDetailIsOpen(!vacancyDetailIsOpen);
   };
 
@@ -168,7 +168,7 @@ const JobVacancy = () => {
                   <div key={vacancy.id}>
                     <div
                       className="m-5 bg-white shadow-md relative font-semibold p-5 rounded-md h-60 flex flex-col justify-between hover:bg-teal-50 cursor-pointer"
-                      onClick={() => handleDetailVacancy(vacancy)}
+                      onClick={() => handleDetailVacancy(vacancy.id)}
                     >
                       {/* company logo */}
                       <div className="bg-gray-300/30 border-2  border-teal-400 h-12 w-12 rounded-xl absolute -top-6 overflow-hidden bg-white">
@@ -188,8 +188,8 @@ const JobVacancy = () => {
                         <p className="text-gray-400">{vacancy.company_name}</p>
                       </div>
                       <p>
-                        Rp. {vacancy.salary_min.toLocaleString()} -{" "}
-                        {vacancy.salary_max.toLocaleString()}
+                        Rp. {formatSalary(vacancy.salary_min)} -{" "}
+                        {formatSalary(vacancy.salary_max)}
                       </p>
                       <p className="capitalize text-teal-500">
                         {vacancy.company_city}
@@ -226,7 +226,7 @@ const JobVacancy = () => {
       </section>
       {vacancyDetailIsOpen && (
         <VacancyDetailModal
-          vacancyData={selectedVacancy}
+          vacancyID={selectedVacancy}
           toggleModal={handleToggleVacancyDetailModal}
         />
       )}
