@@ -12,7 +12,7 @@ const SalLayout = ({ children }) => {
     sal();
   }, [location]);
 
-  return <div>{children}</div>;
+  return <>{children}</>;
 };
 
 SalLayout.propTypes = {

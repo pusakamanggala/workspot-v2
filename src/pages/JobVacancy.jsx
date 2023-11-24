@@ -93,7 +93,7 @@ const JobVacancy = () => {
   );
 
   return (
-    <>
+    <main className="overflow-x-hidden">
       <Navbar />
       <section className="flex flex-col min-h-[100dvh] bg-gray-100 w-full">
         <div
@@ -230,7 +230,7 @@ const JobVacancy = () => {
           toggleModal={handleToggleVacancyDetailModal}
         />
       )}
-    </>
+    </main>
   );
 };
 
