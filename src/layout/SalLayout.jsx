@@ -12,7 +12,7 @@ const SalLayout = ({ children }) => {
     sal();
   }, [location]);
 
-  return <>{children}</>;
+  return <main className="overflow-x-hidden">{children}</main>;
 };
 
 SalLayout.propTypes = {

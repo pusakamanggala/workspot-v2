@@ -9,7 +9,7 @@ import Vacancy from "../components/Vacancy";
 
 const LandingPage = () => {
   return (
-    <main className="overflow-x-hidden">
+    <>
       <Navbar />
       <section className="space-y-32 space-y-reverse lg:mx-32 xl:mx-52 mx-6">
         <HeroSection />
@@ -20,7 +20,7 @@ const LandingPage = () => {
         <FraudWarning />
       </section>
       <Footer />
-    </main>
+    </>
   );
 };
 
