@@ -11,7 +11,6 @@ import ErrorImage from "../img/undraw_fixing_bugs.svg";
 const Vacancy = () => {
   const [vacancyDetailIsOpen, setVacancyDetailIsOpen] = useState(false);
   const [selectedVacancy, setSelectedVacancy] = useState(null);
-  console.log(selectedVacancy);
 
   const {
     data: vacancyData,
@@ -110,7 +109,7 @@ const Vacancy = () => {
           {vacancyData.data
             .filter((vacancy) => vacancy.job_status === 1)
             .map((vacancy) => (
-              <div key={vacancy.id}>
+              <div key={vacancy.id} className="outline-none focus:outline-none">
                 <div
                   className="m-6 bg-white shadow-md relative font-semibold p-5 rounded-md h-60 flex flex-col justify-between hover:bg-teal-50 cursor-pointer"
                   onClick={() => handleDetailVacancy(vacancy.id)}
@@ -124,19 +123,23 @@ const Vacancy = () => {
                     />
                   </div>
                   <div className="space-y-2 mt-5">
-                    <div className="flex text-gray-400 gap-3">
+                    <div className="flex text-gray-400 gap-2 lg:text-base text-sm">
                       <p>{convertDate(vacancy.created_at)}</p>
                       <p>•</p>
                       <p>{vacancy.job_tenure}</p>
                     </div>
-                    <h1 className="font-bold text-xl">{vacancy.title}</h1>
-                    <p className="text-gray-400">{vacancy.company_name}</p>
+                    <h1 className="font-bold xl:text-xl lg:text-lg text-base line-clamp-2">
+                      {vacancy.title}
+                    </h1>
+                    <p className="text-gray-400 line-clamp-1">
+                      {vacancy.company_name}
+                    </p>
                   </div>
-                  <p>
+                  <p className="lg:text-base text-sm line-clamp-1">
                     Rp. {formatSalary(vacancy.salary_min)} -{" "}
                     {formatSalary(vacancy.salary_max)}
                   </p>
-                  <p className="capitalize text-teal-500">
+                  <p className="capitalize text-teal-500 line-clamp-1">
                     {vacancy.company_city}
                   </p>
                 </div>

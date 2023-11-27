@@ -100,10 +100,10 @@ const JobVacancy = () => {
           className="flex-1"
           data-sal="flip-up"
           data-sal-duration="500"
-          data-sal-delay="500"
+          data-sal-delay="300"
           data-sal-easing="ease-out-bounce"
         >
-          <div className="lg:mx-32 sm:mx-14 my-40 flex flex-col justify-center items-center gap-14">
+          <div className="2xl:mx-44 xl:mx-36 lg:mx-24 sm:mx-14 my-40 flex flex-col justify-center items-center gap-14">
             {/* search bar */}
             <form
               className="flex gap-4 flex-wrap justify-end mx-10"
@@ -149,19 +149,19 @@ const JobVacancy = () => {
                 id="vacancy_status"
                 className="border border-gray-300 px-4 py-2 outline-none focus:border-teal-500 focus:border-2"
                 ref={jobStatusRef}
+                title="Select job status"
               >
                 <option value={1}>Open</option>
                 <option value={0}>Closed</option>
               </select>
-
               <button
                 type="submit"
-                className="bg-teal-400 text-white px-4 py-2"
+                className="bg-teal-400 text-white px-4 py-2 shadow-md hover:bg-teal-500 transition duration-300 ease-in-out"
               >
                 Search
               </button>
             </form>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 w-full">
               {vacancySuccess &&
                 filteredVacancy.length > 0 &&
                 filteredVacancy.map((vacancy) => (
@@ -179,19 +179,23 @@ const JobVacancy = () => {
                         />
                       </div>
                       <div className="space-y-2 mt-5">
-                        <div className="flex text-gray-400 gap-3">
+                        <div className="flex text-gray-400 gap-2 lg:text-base text-sm">
                           <p>{convertDate(vacancy.created_at)}</p>
                           <p>•</p>
                           <p>{vacancy.job_tenure}</p>
                         </div>
-                        <h1 className="font-bold text-xl">{vacancy.title}</h1>
-                        <p className="text-gray-400">{vacancy.company_name}</p>
+                        <h1 className="font-bold xl:text-xl lg:text-lg text-base line-clamp-2">
+                          {vacancy.title}
+                        </h1>
+                        <p className="text-gray-400 line-clamp-1">
+                          {vacancy.company_name}
+                        </p>
                       </div>
-                      <p>
+                      <p className="lg:text-base text-sm line-clamp-1">
                         Rp. {formatSalary(vacancy.salary_min)} -{" "}
                         {formatSalary(vacancy.salary_max)}
                       </p>
-                      <p className="capitalize text-teal-500">
+                      <p className="capitalize text-teal-500 line-clamp-1">
                         {vacancy.company_city}
                       </p>
                     </div>

@@ -2,6 +2,7 @@ import { useGetVacancyByID } from "../hooks/useGetVacancyByID";
 import { convertDate, formatSalary } from "../utils/helper";
 import PropTypes from "prop-types";
 import ErrorImage from "../img/undraw_fixing_bugs.svg";
+import { useEffect } from "react";
 
 const VacancyDetailModal = ({ toggleModal, vacancyID }) => {
   const {
@@ -27,6 +28,27 @@ const VacancyDetailModal = ({ toggleModal, vacancyID }) => {
       );
   };
 
+  // disable parent component scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
+
+  //   if esc key is pressed, close modal
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        toggleModal();
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [toggleModal]);
+
   const LoadingSkeleton = () => (
     <div className="bg-white rounded-lg md:h-5/6 md:w-4/6 h-full w-full border-4 border-teal-200 flex flex-col">
       <div className="flex justify-between p-4 border-b animate-pulse">
@@ -38,7 +60,7 @@ const VacancyDetailModal = ({ toggleModal, vacancyID }) => {
           </div>
         </div>
         <div>
-          <button onClick={toggleModal}>
+          <button onClick={toggleModal} title="Close" type="button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -80,7 +102,12 @@ const VacancyDetailModal = ({ toggleModal, vacancyID }) => {
             {vacancyErrorData?.response?.data?.message ||
               "Something went wrong when fetching data"}
           </p>
-          <button onClick={toggleModal} className="absolute top-4 right-4">
+          <button
+            onClick={toggleModal}
+            title="Close"
+            type="button"
+            className="absolute top-4 right-4"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -130,7 +157,7 @@ const VacancyDetailModal = ({ toggleModal, vacancyID }) => {
               </div>
             </div>
             <div>
-              <button onClick={toggleModal}>
+              <button onClick={toggleModal} title="Close" type="button">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

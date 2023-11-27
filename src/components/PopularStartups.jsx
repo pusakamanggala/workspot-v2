@@ -1,12 +1,12 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import TokopediaLogo from "../img/tokopedia_logo.png";
-import BukalapakLogo from "../img/bukalapak_logo.png";
-import TravelokaLogo from "../img/traveloka_logo.png";
-import ShopeeLogo from "../img/shopee_logo.png";
-import GojekLogo from "../img/gojek_logo.png";
-import OvoLogo from "../img/ovo_logo.png";
+import TokopediaLogo from "../img/tokopedia_logo.webp";
+import BukalapakLogo from "../img/bukalapak_logo.webp";
+import TravelokaLogo from "../img/traveloka_logo.webp";
+import ShopeeLogo from "../img/shopee_logo.webp";
+import GojekLogo from "../img/gojek_logo.webp";
+import OvoLogo from "../img/ovo_logo.webp";
 
 const PopularStartups = () => {
   const settings = {
